@@ -1,0 +1,46 @@
+h1 {
+    color: goldenrod;
+    text-align: center;
+}
+
+body {
+    background: url("./images/table.png");
+    background-size: cover;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+p {
+    color: rgb(255, 255, 255);
+    /* font-size: 20px; */
+    text-align: center;
+    font-weight: bold;
+}
+
+#message-el {
+    font-style: italic;
+}
+
+button {
+    background-color: rgb(223, 154, 44);
+    width: 150px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: green;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+/* #start-btn {
+    margin-left: 38.5%;
+} */

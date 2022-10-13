@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var myArray = ["Adarsh", 24];
+        var ourArray = [["the universe", 42],["everything", 101010]];
+        var myGlobal = 10;
+
+        console.log("Hello world, \"I am double quotes\"");
+
+        console.log(myArray[0] + "\n");
+        console.log(ourArray[0][0] + " "+ ourArray[0][1]);
+
+        display();
+
+        function display() {
+            console.log("Hello, World");
+        }
+
+        function fun1() {
+            oopsGlobal = 5; // if we do not declare any variable inside the function with keyword "var, let, const" then it has a global scope by default. But its not  recommended.
+        }
+
+        function fun2() {
+
+            if(typeof myGlobal != "undefined") {
+                console.log("myGlobal : " + myGlobal);
+            }
+
+            if (typeof oopsGlobal != "undefined") {
+                console.log("oopsGlobal : " + oopsGlobal);
+            }
+        }
+
+        function testStrict(num) {
+            if(num === 7) { // "===" the strict equality operator always consider operands of different types to be different unlike equality operator "==".
+                console.log("true");
+            }
+            else {
+                console.log("false");
+            }
+        }
+
+        function testEquality(num) {
+            if(num  == '1') {    //this is true because in JS "==" operator tries to convert the operands to the same type before comparing. Equality operator performs type conversion.
+                console.log("Yes, this is one");
+            }
+            else {
+                console.log("It is not one");
+            }
+        }
+
+        function caseInSwitch(val) {
+            switch(val) {
+                case 1: 
+                    console.log("alpha");
+                    break;
+                case 2:
+                    console.log("beta");
+                    break;
+                case 3:
+                    console.log("gamma");
+                    break;
+                case 4:
+                    console.log("delta");
+                    break;
+                default:
+                    console.log("this is default");
+                    break;
+            }
+
+        }
+
+        fun1();
+        fun2();
+        testStrict(10);
+        testEquality(1);
+        caseInSwitch(1);
+
+        var testObject = {  
+            "name" : "Quincy",
+            "legs" : 4,
+            "tails" : 1,
+            "friends" : ["everything!"]
+        }; // Objects in JS is same like maps in C++. It has key value pair like map in C++. We can access the value of object with corresponding key or normally with . (dot operator).
+
+        console.log(testObject.name);
+        console.log(testObject.friends);
+        console.log(testObject["tails"]);
+        console.log(testObject["legs"]);
+
+        var test = {
+            "an entree" : "hamburger",
+            "my side" : "veggies",
+            "the drink" : "water"
+        };
+
+        console.log(test["an entree"]); // to access these type of object [] should be used like array.
+
+        testObject.bark = "bow-bow"; // we can add new properties to an object by this method.
+        console.log(testObject);
+
+        delete testObject.bark; // we can delete an object property  by this method.
+
+        //hasOwnProperty() // this method is used to check if any object owns this property or not. It returns a boolean value
+
+        if(test.hasOwnProperty("an entree")) {
+            console.log("True");
+        }
+        else {
+            console.log("Not Found");
+        }
+
+
+
+        var myMusic = [
+            {
+                "artist": "Billy Joel",
+                "title" : "Piano Man",
+                "release_year": 1973,
+                "formats" : [
+                    "CD",
+                    "8T",
+                    "LP"
+                ],
+                "gold": true
+            },
+
+            {
+                "artist": "Beau Carnes",
+                "title": "Cereal Man",
+                "release_year": 2003,
+                "formats": [
+                    "YouTube video",
+                    "8T",
+                    "LP"
+                ],
+                "gold": true 
+            }
+        ]; // we can create an array of objects like this
+
+
+        var myStorage = {
+            "car" : {
+                "inside" : {
+                    "glove box":"maps", 
+                    "passenger seat" : "crumbs"
+                },
+                "outside": {
+                    "trunk": "jack"
+                }
+            }
+        };  // we can create nested objects like this in JS.
+
+        console.log(myStorage.car.inside["glove box"]);
+
+        var myPlants = [
+            {
+                "type":"flower",
+                "list": [
+                    "rose",
+                    "tulip",
+                    "dandelion"
+                ]
+            },
+            {
+                "type": "trees",
+                "list": [
+                    "fir",
+                    "pine",
+                    "birch"
+                ]
+            }
+        ]; // Array of objects with array inside the object
+
+        console.log(myPlants[0].list[1]);
+
+        var collection = {
+            "2548": {
+                "album" : "Slippery When Wet",
+                "artist" : "Bon Jovi",
+                "tracks": [
+                    "Let it Rock",
+                    "You Give Love a Bad Name"
+                ]
+            },
+            "2468": {
+                "album": "1999",
+                "artist": "Prince",
+                "tracks": [
+                    "1999",
+                    "Little Red Corvette"
+                ]
+            },
+            "1245": {
+                "album": "Robert Palmer",
+                "tracks" :[]
+            },
+            "5439": {
+                "album": "ABBA Gold"
+            }
+        };
+
+        function updateRecords(id, prop, value) {
+            if(collection[id][prop] === "") {
+                collection[id][prop] = value;
+            }
+            else if(prop == "tracks") {
+                collection[id][prop] = collection[id][prop] || [];
+                collection[id][prop].push(value);
+            }
+            else {
+                collection[id][prop] = value;
+            }
+            return collection;
+        }
+        console.log(updateRecords(5439, "artist", "ABBA"));
+        console.log(updateRecords(5439, "tracks", "Kesariya"));
+        console.log(updateRecords(5439, "tracks", "Rasiya"));
+
+        var myArray1 = [];
+
+        var i = 0;
+
+        while(i<5) {
+            myArray1.push(i);
+            i++;
+        }
+
+        console.log(myArray1);
+
+        var myArray2 = [];
+
+        for(var k=0; k<=5; k++) {
+            myArray2.push(k);
+            var j;
+        }
+
+        console.log(j);
+
+        console.log(myArray2);
+
+        var product = multiplyAll([[1,2],
+                                   [3,4],
+                                    [5,6,7]
+                                ]);
+        function multiplyAll(myArray) {
+            var product = 1;
+            for(var i=0; i<myArray.length; i++) {
+                for(var j=0; j<myArray[i].length; j++) {
+                    product = product * myArray[i][j];
+                }
+            }
+            return product;
+        }
+
+        console.log(product);
+
+        var contacts = [
+            {
+                "firstName" : "Akira",
+                "lastName" : "Laine",
+                "number" : "054233565",
+                "likes": ["Pizza", "Coding", "Brownie Pants"]
+            },
+            {
+                "firstName": "Harry",
+                "lastName": "Potter",
+                "number": "0994372684",
+                "likes": ["Hogwarts", "Magic", "Hagrid"]
+            },
+            {
+                "firstName": "Sherlock",
+                "lastName": "Holmes",
+                "number": "0487345643",
+                "likes": ["Intriguing Cases", "Violin"]
+            },
+            {
+                "firstName": "Kristian",
+                "lastName": "Vos",
+                "number": "unknown",
+                "likes": ["JavaScript", "Gaming", "Foxes"]
+            }
+        ];
+
+        function lookupProfile(name, prop){
+            var ans;
+            for(var i=0; i<contacts.length; i++) {
+                if(contacts[i].firstName === name ) {
+                    ans = contacts[i][prop] || "No such property";
+                }
+            }
+            if(ans == null) {
+                ans = "No such contact";
+            }
+            return ans;
+        }
+
+        var data = lookupProfile("Sherlock", "Hello");
+
+        console.log(data);
+
+        function randonFraction() {
+            return Math.random();
+        }  // we can create a decimal number between 0 and 1 by using Math.random()
+
+        console.log(randonFraction());
+
+        // how to generate whole numbers in JS?
+
+        var randomWholeNumber = Math.floor(Math.random() * 20); // this will generate whole number between 0 to 20
+
+        function randomWholeNumbers() {
+            return Math.floor(Math.random() * 10); // this will generate whole number between 0 to 9
+        }
+
+        console.log(randomWholeNumber);
+        console.log(randomWholeNumbers());
+
+        // how to generate any number between the given range
+
+        function myRandomRange(myMin, myMax) {
+            return Math.floor(Math.random * (myMax - myMin + 1)) + myMin;
+        }
+
+        console.log(myRandomRange(1,9));
+
+        // How to convert string into Integer?
+
+        function convertToInteger(str) {   // We can convert a string into Integer by using parseInt function like in JAVA.
+            return parseInt(str);
+        }
+
+        console.log(convertToInteger("56"));
+
+        // How to convert a binary number to decimal number
+
+        function convertBinaryToInteger(str) {   // We can convert a string into Integer by using parseInt function with the base of the respective number.
+                return parseInt(str, 2);
+            }
+
+            console.log(convertBinaryToInteger("100"));
+
+        //Ternary Operator
+
+        function testTernary(a, b) {
+            return a == b ? true : false;
+        }
+
+        console.log(testTernary(56, "56"));
+
+        // Nested Ternary Operator
+
+        function testNestedTernary(num) {
+            return num > 0 ? "Positive" : num < 0 ? "Negative" : "Zero";
+        }
+
+        console.log(testNestedTernary(0));
+
+        // Difference between "var" and "let"  keywords
+
+        /*
+            let - it doesnot allow you to declare same variable twice in the same scope.
+            var - it allows you to declare the same variable twice within the same scope.
+        */
+
+        let catName = "Adarsh";
+        var quote = "sweet";
+        var quote = "bitter";
+
+        function catTalk() {
+            let catName = "Amul";
+        } 
+
+        console.log(catName);
+        console.log(quote);
+
+        // Use of "use strict"  - this will enable us to find the error related to variable declaration immediately.
+        
+        "use strict";
+        x = 3.14;
+        dogName = "Tommy";
+        // dogName = "Adarsh"
+
+        function myFuntion() {
+            "use strict";
+            y = 3.14;
+        }
+
+        console.log(dogName);
+
+       // let dogName = "Simba";
+
+
+        // Difference between scopes of "var" and "let"
+
+        /*
+        var - if any variable is declared with var keyword inside a block then this variable can be accessed by anyone with in the same block(if it contains more than one block within a single block).
+        */
+        function checkVarScope() {
+            var a = "Function scope";
+            
+            if(true) {
+                a = "block scope";
+                console.log("Block scope of a is:", a);
+            }
+            console.log("Function scope of a is:", a);
+        } // O/p --> Block scope of a is:block scope  Function scope of a is:block scope
+
+        checkVarScope();
+
+        /*
+            let - scope of variables declared with let keyword is either only with in the same line statement or only in the block they are declared but if block contains any other block then this inside block can not access this variable. 
+        */
+
+        function checkLetScope() {
+            let a = "Function scope";
+
+            if(true) {
+                let a = "block scope";
+                console.log("Block scope of a is:", a);
+            }
+            console.log("Function scope of a is:", a);
+        } // O/p --> Block scope of a is:block scope  Function scope of a is:Function scope
+
+        checkLetScope();
+
+        /*
+        const - values of the variables declared with const keyword can not be changed throughout the program
+        */
+        function printManyTimes(str) {
+            const SENTENCE = str  + " is cool"; 
+
+            console.log(SENTENCE);
+        }
+
+        printManyTimes("freeCodeCamp");
+
+        // we can mutate a const Array
+        // but we can not mutate the directly like s = [5,7,2];
+        //we have to change each element seperately.
+
+        const s = [2,5,7];
+
+        function editInPlace() {
+            s[0] = 5;
+            s[1] = 7;
+            s[2] = 2;
+        }
+
+        editInPlace();
+
+        console.log(s);
+
+        /*  Prevent Object Mutation*/
+
+        // We can freeze the mutation of the object or array  by using a function called Object.freeze(objectName);
+
+        function freezeObj() {
+            const MATH_CONSTANT ={
+                "PI" :3.14,
+                "g": 9.8
+            };
+
+            Object.freeze(MATH_CONSTANT);
+
+            try {
+                MATH_CONSTANT.PI = 99;
+                MATH_CONSTANT.g = 10;
+            }
+            catch(ex) {
+                console.log(ex);
+            }
+            return MATH_CONSTANT.PI;
+        }
+
+        console.log(freezeObj());
+
+        /* Arrow functions*/
+
+        var magic = () => new Date();
+
+        console.log(magic());
+
+        var myConcat = (arg1, arg2) => arg1.concat(arg2);
+
+        console.log(myConcat([1,2], [3,4,5]));
+
+        /* Default Parameters*/
+
+        // Default parameters are same like in C++
+
+        function increment(num, value = 1) {
+            return num + value;
+        }
+        console.log(increment(5));
+        console.log(increment(5,2));
+
+        /*Rest Operator (...)*/
+
+        // This operator is used as a shortcut to pass three or more than three arguments in a function
+
+        function sum(...args) { //  Rest operator will take all the arguments and put it into an array name args
+            var ans = 0;
+            for(let i=0; i<args.length; i++) {
+                ans += args[i];
+            }
+            return ans;
+        }
+
+        console.log(sum(1,2,3,4));
+
+        var add = (...args) => { 
+                var ans = 0;
+                for (let i = 0; i < args.length; i++) {
+                    ans += args[i];
+                }
+                return ans;
+            }
+
+        console.log(add(1,2,3,4));
+
+        /*Spread operator (...)*/
+        // This operator is used to copy elements of one array to another array with different memory locations
+
+        const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
+
+        const arr2 = [...arr1];
+
+        arr1[0] = "potato";
+
+        console.log(arr2);
+        console.log(arr1);
+
+        /* Destructuring Assignment*/
+        // Destructuring Assignment is use to assign the values of one object to another variable quickly
+
+        var voxel = {
+            x:3.6,
+            y:7.4,
+            z:6.54
+        };
+
+        const {x:a, y:b, z:c} = voxel; // Destructuring Assignment Ex. const {original value:copied value} = objectName
+        console.log(a); // a = 3.6
+        console.log(b); // b = 7.4
+        console.log(c); // c = 6.54
+        console.log(voxel);
+
+        const AVG_TEMPERATURES = {
+            today: 77.5,
+            tommorow : 79
+        };
+
+        function getTempOfTomorrow() {
+            const {tommorow:tempOfTomorrow } = AVG_TEMPERATURES;
+            return tempOfTomorrow;
+        }
+
+        console.log(getTempOfTomorrow());
+
+        /* Nested Destructuring Assignment*/
+
+        const LOCAL_FORECAST = {
+            "today" : {
+                "min" : 72,
+                "max" : 83
+            },
+            "tomorrow" : {
+                "min":73.3,
+                "max":84.6
+            }
+        };
+
+        function getMaxTempOfTomorrow() {
+            const {tomorrow : { max:maxOfTomorrow }} = LOCAL_FORECAST;
+            return maxOfTomorrow;
+        }
+
+        console.log(getMaxTempOfTomorrow());
+
+        /* Destructuring Assignment to Assign values  from Arrays*/
+        const [z,y] = [1,2,3,4,5];
+        console.log(z + " " + y); // z = 1 ,y = 2 
+
+        const [g,h, , l] = [1,2,3,4,5]; // to skip any value we can use blank space between the variables in left hand side
+        console.log(g + " "+ h +" " + l); // g = 1, h = 2, l = 4
+
+        // We can use destructuring assignments to swap two numbers
+
+        let m = 3, n = 4;
+
+        [m,n] = [n,m];
+        console.log("m = " + m + " n = " + n); // m = 4 n = 3
+
+        //Use of destructuring Assignments with Rest Operator
+
+        const source = [1,2,3,4,5,6,7,8,9,10];
+
+        function removeFirstTwo(list) {
+            const [, ,...args] = list;
+            return args;
+        }
+
+        console.log(removeFirstTwo(source)); // [3,4,5,6,7,8,9,10]
+
+        // Use of destructuring Assignments to pass an object's specific property in a function
+        const stats = {
+            max: 56.78,
+            standard_deviation:4.34,
+            median:34.54,
+            mode:23.87,
+            min:-0.75,
+            average:35.85
+        };
+
+        function half({max,min}) {
+            return (max + min)/2.0;
+        }
+        console.log(half(stats));
+        
+        /* Template literals*/
+
+        //It is use to create a multiline string.
+
+        const person = {
+            name: "Zodiac Hasbro",
+            age : 56
+        };
+
+        const greeting = `Hello, my name is ${person.name}! 
+I am ${person.age} years old.`;
+
+        console.log(greeting);
+
+        const result = {
+            success : ["max-length", "no-amd", "prefer-arrow-functions"],
+            failure : ["no-var", "var-on-top", "linebreak"],
+            skipped : ["id-blacklist","no-dup-keys"]
+        };
+
+        function makeList(arr) {
+            const resultDisplayArray = `<li class="text-warning">${result.failure[0]}</li>
+<li class="text-warning">${result.failure[1]}</li>
+<li class="text-warning">${result.failure[2]}</li>`;
+            return resultDisplayArray;
+        }
+
+        console.log(makeList(result.failure));
+
+        /* Simple fields*/
+        // Use Simple Fields when the key and value pair have same identifier name
+
+        // const contactPerson = (name, age, gender) => {
+        //     return {
+        //         name: name,
+        //         age: age,
+        //         gender : gender
+        //     }
+        // }
+
+        // console.log(contactPerson("Zodiac Hasbro", 56, "male"));
+
+        // we can write the above code in simpler form
+
+        const contactPerson = (name, age, gender) => ({name,age,gender});
+        console.log(contactPerson("Zodiac Hasbro", 56, "male"));
+
+        /* Declarative Functions*/
+        // We can also declare a function inside an object
+
+        // const bicycle = {
+        //     gear:2, 
+        //     setGear : function (newGear) {
+        //         "use strict"
+        //         this.gear = newGear;
+        //     }
+        // };
+
+        const bicycle = {
+                gear: 2,
+                setGear (newGear) { // this is the shorter way to declare a function inside an object of above example
+                    "use strict"
+                    this.gear = newGear;
+                }
+            };
+
+        bicycle.setGear(3);
+        console.log(bicycle.gear);
+
+        /* Earlier method to create object of a class*/
+
+        var SpaceShuttle = function (targetPlace) { // class SpaceShuutle constructor
+            this.targetPlace = targetPlace;
+        }
+        var zues = new SpaceShuttle("Jupiter"); // creating object of SpaceShuttle class
+
+        console.log(zues.targetPlace);
+
+        /* Using class keyword to define a constructor function*/
+
+        function makeclass() {
+            class Vegetable {
+                constructor(name) {
+                    this.name = name;
+                }
+            }
+            return Vegetable;
+        }
+
+        const Vegetable = makeclass();
+        const carrot  = new Vegetable("carrot");
+        console.log(carrot.name);
+        
+        /* getters and setters*/
+
+        class Book {
+            constructor(author) {
+                this._author = author;
+            }
+            get writer() {
+                return this._author;
+            }
+            set writer(updateAuthor) {
+                this._author = updateAuthor;
+            }
+        }
+
+        function makeclass() {
+
+            class ThermoStat{
+                constructor(temp) {
+                    this._temp = 5/9 * (temp - 32);
+                }
+                get temperature() {
+                    return this._temp;
+                }
+
+                set temperature(updateTemp) {
+                    this._temp = 5 / 9 * (updateTemp - 32);
+                }
+            }
+
+            return ThermoStat;
+        }
+
+        const ThermoStat = makeclass();
+        const thermos = new ThermoStat(76);
+        let temp = thermos.temperature;
+        thermos.temperature = 26;
+
+        console.log(temp);
+        console.log(thermos.temperature);
+
+        /* Use of import keyword */
+        // import keyword is used to import some piece of code from an another file
+
+        import { capitalizeString} from "./index";
+
+        const cap = capitalizeString("hello!");
+        console.log(cap);
+        src= "index.js"
+
+        
+    </script>
+    <link rel="script" href="./index.js">
+</head>
+<body>
+    
+</body>
+</html>
